@@ -1,0 +1,9 @@
+.tool {
+  .tool-list {
+    color: theme('colors.white');
+
+    &-text {
+      color: theme('colors.darkgrey');
+    }
+  }
+}
