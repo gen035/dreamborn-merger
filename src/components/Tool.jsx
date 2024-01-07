@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRotateLeft, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { track } from '@vercel/analytics';
 
 import { formatList, formatArrayToString, mergeLists, validateArrays } from '../utils/formatData';
 import InstructionModal from './InstructionModal';
@@ -17,6 +18,7 @@ const Tool = () => {
     setListCount(listCount + 1);
     setListContents([...listContents, '']);
     setFormattedListsContent([...formattedListsContent, []])
+    track('List', { action: 'add' ,totalList: listCount + 1});
   };
 
   // Handle deleting a list
@@ -25,6 +27,7 @@ const Tool = () => {
       setListCount(listCount - 1);
       setListContents(listContents.filter((_, i) => i !== index));
       setFormattedListsContent(formattedListsContent.filter((_, i) => i !== index))
+      track('List', { action: 'delete' ,totalList: listCount - 1});
     }
   };
 
@@ -38,6 +41,7 @@ const Tool = () => {
 
     setListContents(updatedListContents);
     setFormattedListsContent(updatedFormattedListsContent);
+    track('List', { action: 'reset' });
   };
 
   // Handle changing the content of a list
@@ -50,17 +54,20 @@ const Tool = () => {
 
     setListContents(updatedListContents);
     setFormattedListsContent(updatedFormattedListsContent);
+    track('List', { action: 'change' });
   };
 
   const handleMergeLists = () => {
     const mergedResults = mergeLists(formattedListsContent);
     setNewList(formatArrayToString(mergedResults));
+    track('List', { action: 'merge' });
   };
 
   const copyToClipboard = () => {
     const textarea = document && document.querySelector('textarea[name="newList"]');
     textarea && textarea.select();
     document.execCommand('copy');
+    track('List', {action: 'copy' });
   };
 
   useEffect(() => {

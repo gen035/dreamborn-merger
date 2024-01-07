@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { track } from '@vercel/analytics';
 
 const InstructionModal = ({ isOpen, onClose }) => {
   const [isModalOpen, setModalOpen] = useState(false || isOpen);
 
   useEffect(() => {
     setModalOpen(isOpen);
+    track('modal', { action: 'opened' });
   }, [isOpen]);
 
   const closeModal = () => {
     setModalOpen(false);
+    track('modal', { action: 'closed' });
     onClose();
   };
 

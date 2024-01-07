@@ -5,7 +5,7 @@ const Header = () => {
     <>
       <header className='m-3 md:m-10 text-center text-white text-xl md:text-3xl md:px-10'>
         A deck merging tool for
-        <a className='font-bold ml-1' href="" target='_blank'>
+        <a className='font-bold ml-1' href='https://dreamborn.ink/' rel='noreferrer' target='_blank'>
           Dreamborn.ink
           <DreamInk />
         </a>
