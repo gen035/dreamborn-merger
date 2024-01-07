@@ -89,8 +89,8 @@ const Tool = () => {
         </div>
       ))}
       <div className='mt-4'>
-        <button className='button--animated mr-4' onClick={addList}>Add List</button>
-        <button disabled={isButtonDisabled} className='button--animated mr-4' onClick={handleMergeLists}>Merge Lists</button>
+        <button className='button--animated mr-4' onClick={addList}>Add Deck</button>
+        <button disabled={isButtonDisabled} className='button--animated mr-4' onClick={handleMergeLists}>Merge Decks</button>
       </div>
       {newList &&
         <div className='mt-6'>
