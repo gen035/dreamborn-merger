@@ -64,9 +64,6 @@ const Tool = () => {
 
   useEffect(() => {
     setIsButtonDisabled(!validateArrays(formattedListsContent));
-
-    console.log('LISTS CHANGE:', listContents);
-    console.log('LISTS CHANGE FORMATTED:', formattedListsContent);
   }, [listContents, formattedListsContent])
 
   return (

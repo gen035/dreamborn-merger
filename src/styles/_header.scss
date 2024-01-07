@@ -2,5 +2,14 @@ header {
   svg {
     display: inline;
     margin-bottom: 30px;
+    transition: transform 250ms linear;
+  }
+
+  a {
+    &:hover {
+      svg {
+        transform: translateY(-5px);
+      }
+    }
   }
 }
