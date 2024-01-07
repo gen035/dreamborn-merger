@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
 const Tool = () => {
-  // Store the amount of lists
-  const [listCount, setListCount] = useState(3);
+  // Store the amount of lists (min 2)
+  const [listCount, setListCount] = useState(2);
   // Store the content of each list
   const [listContents, setListContents] = useState(Array.from({ length: listCount }, () => ''));
-
+  // Store formatted list
   const [parsedListsContent, setParsedListsContent] = useState(Array.from({ length: listCount }, () => ''));
   // Handle adding a new list
   const addList = () => {
@@ -55,20 +55,22 @@ const Tool = () => {
 }
 
   useEffect(() => {
-    console.log('LISTS CHANGE', listContents);
-    console.log('LISTS CHANGE parsed', parsedListsContent);
+    console.log('LISTS CHANGE:', listContents);
+    console.log('LISTS CHANGE FORMATTED:', parsedListsContent);
   }, [listContents, parsedListsContent])
 
   return (
-    <div className='container mx-auto max-w-96 tool py-10'>
+    <div className='tool container mx-auto max-w-screen-sm py-10'>
       {listContents.map((content, index) => (
         <div className='tool-list' key={index}>
-          <div className='tool-list-header mb-2 mt-4 flex'>
-            <h2 className='tool-list-title'>List {index + 1}</h2>
-            <button className='tool-list-reset mr-2 ml-2' onClick={() => resetList(index)}>Reset List</button>
-            {listCount > 2 && (
-              <button className='tool-list-delete' onClick={() => deleteList(index)}>Delete List</button>
-            )}
+          <div className='tool-list-header mb-2 mt-4 flex justify-between'>
+            <h2 className='tool-list-title'>Deck {index + 1}</h2>
+            <div>
+              <button className='tool-list-reset mr-2 ml-2 text-xs' onClick={() => resetList(index)}>Reset</button>
+              {listCount > 2 && (
+                <button className='tool-list-delete text-xs' onClick={() => deleteList(index)}>Delete</button>
+              )}
+            </div>
           </div>
           <textarea
             className='tool-list-text block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
