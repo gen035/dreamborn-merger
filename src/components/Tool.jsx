@@ -82,7 +82,7 @@ const Tool = () => {
 
         </div>
       ))}
-      <button className='' onClick={addList}>Add List</button>
+      <button className='button--animated mt-4' onClick={addList}>Add List</button>
     </div>
   );
 };
