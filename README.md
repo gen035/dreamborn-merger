@@ -51,7 +51,7 @@ This simple React application allows users to merge Lorcana decks exported from 
 
 ## Deployment
 
-The project is hosted on Vercel. You can access it at [https://your-vercel-app-url](https://your-vercel-app-url).
+The project is hosted on Vercel. You can access it at [https://dreamborn-merger.vercel.app/](https://dreamborn-merger.vercel.app/).
 
 ## Contributing
 
