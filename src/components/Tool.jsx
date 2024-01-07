@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRotateLeft, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 import { formatList, formatArrayToString, mergeLists, validateArrays } from '../utils/formatData';
+import InstructionModal from './InstructionModal';
 
 const Tool = () => {
   const [listCount, setListCount] = useState(2);
@@ -106,6 +107,7 @@ const Tool = () => {
           <button className='button--animated mt-4' onClick={copyToClipboard}>Copy to Clipboard</button>
         </div>
       }
+    <InstructionModal isOpen={true} />
     </div>
   );
 };
