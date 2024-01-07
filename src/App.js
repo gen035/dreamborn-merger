@@ -6,7 +6,7 @@ const App = () => {
     <>
       <Header />
       <Tool />
-      <a href='https://github.com/gen035/dreamink-merger' target='_blank' className=''>
+      <a href='https://github.com/gen035/dreamink-merger' target='_blank' className='absolute bottom-4 left-4'>
         <img className='max-w-16' src='GitHub_Logo_White.png' />
       </a>
     </>

@@ -3,7 +3,7 @@ import DreamInk from "./DreamInk";
 const Header = () => {
   return (
     <>
-      <header className='m-10 text-center text-white text-3xl px-10'>
+      <header className='m-3 md:m-10 text-center text-white text-xl md:text-3xl md:px-10'>
         A deck merging tool for
         <a className='font-bold ml-1' href="" target='_blank'>
           Dreamborn.ink

@@ -68,7 +68,7 @@ const Tool = () => {
   }, [listContents, formattedListsContent])
 
   return (
-    <div className='tool container mx-auto max-w-screen-md p-10'>
+    <div className='tool container mx-auto max-w-screen-md px-10 pt-5 pb-20'>
       <h3 className='text-white underline cursor-pointer' onClick={() => setIsModalOpened(true)}>Instructions</h3>
       {listContents.map((content, index) => (
         <div className='tool-list' key={index}>
