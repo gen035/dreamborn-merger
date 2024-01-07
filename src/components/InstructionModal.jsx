@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const InstructionModal = ({ isOpen }) => {
+const InstructionModal = ({ isOpen, onClose }) => {
   const [isModalOpen, setModalOpen] = useState(false || isOpen);
 
   useEffect(() => {
@@ -10,12 +10,13 @@ const InstructionModal = ({ isOpen }) => {
 
   const closeModal = () => {
     setModalOpen(false);
+    onClose();
   };
 
   return (
     <>
       {isModalOpen && (
-        <div className='modal-overlay fixed top-0 left-0 w-screen h-screen bg-black/[.75] z-50'>
+        <div className='modal-overlay fixed top-0 left-0 w-screen h-screen bg-black/[.75] z-50 p-2'>
           <div className='modal bg-black p-8 max-w-96 relative inset-y-1/2 inset-x-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md text-white text-center'>
             <h2 className='text-xl mb-2'>Instructions 💫</h2>
             <ol role='list' className='list-decimal text-left pl-4 text-sm'>
@@ -33,7 +34,8 @@ const InstructionModal = ({ isOpen }) => {
 };
 
 InstructionModal.propTypes = {
-  isOpen: PropTypes.bool
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func
 };
 
 export default InstructionModal;

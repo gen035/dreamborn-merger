@@ -11,7 +11,7 @@ const Tool = () => {
   const [formattedListsContent, setFormattedListsContent] = useState(Array.from({ length: listCount }, () => []));
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [newList, setNewList] = useState(null);
-
+  const [isModalOpened, setIsModalOpened] = useState(false);
   // Handle adding a new list
   const addList = () => {
     setListCount(listCount + 1);
@@ -68,7 +68,8 @@ const Tool = () => {
   }, [listContents, formattedListsContent])
 
   return (
-    <div className='tool container mx-auto max-w-screen-sm py-10'>
+    <div className='tool container mx-auto max-w-screen-md p-10'>
+      <h3 className='text-white underline cursor-pointer' onClick={() => setIsModalOpened(true)}>Instructions</h3>
       {listContents.map((content, index) => (
         <div className='tool-list' key={index}>
           <div className='tool-list-header mb-2 mt-4 flex justify-between'>
@@ -107,7 +108,7 @@ const Tool = () => {
           <button className='button--animated mt-4' onClick={copyToClipboard}>Copy to Clipboard</button>
         </div>
       }
-    <InstructionModal isOpen={true} />
+    <InstructionModal isOpen={isModalOpened} onClose={() => setIsModalOpened(false)} />
     </div>
   );
 };
