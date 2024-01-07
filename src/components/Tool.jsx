@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRotateLeft, faTrash } from '@fortawesome/free-solid-svg-icons'
+
 import { formatList, formatArrayToString, mergeLists, validateArrays } from '../utils/formatData';
 
 const Tool = () => {
@@ -73,9 +76,9 @@ const Tool = () => {
           <div className='tool-list-header mb-2 mt-4 flex justify-between'>
             <h2 className='tool-list-title text-white'>Deck {index + 1}</h2>
             <div>
-              <button className='tool-list-reset mr-2 ml-2 text-xs' onClick={() => handleResetList(index)}>Reset</button>
+              <FontAwesomeIcon className='tool-list-icon--reset text-white cursor-pointer' icon={faArrowRotateLeft} onClick={() => handleResetList(index)}/>
               {listCount > 2 && (
-                <button className='tool-list-delete text-xs' onClick={() => handleDeleteList(index)}>Delete</button>
+                <FontAwesomeIcon className='tool-list-icon--delete text-white cursor-pointer ml-2' icon={faTrash} onClick={() => handleDeleteList(index)}/>
               )}
             </div>
           </div>
@@ -106,7 +109,6 @@ const Tool = () => {
           <button className='button--animated mt-4' onClick={copyToClipboard}>Copy to Clipboard</button>
         </div>
       }
-      
     </div>
   );
 };

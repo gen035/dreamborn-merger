@@ -1,9 +1,21 @@
 .tool {
   .tool-list {
-    color: theme('colors.white');
-
     &-text {
       color: theme('colors.darkgrey');
+    }
+
+    &-icon--reset {
+      transition: all 250ms linear;
+      &:hover {
+        transform: rotate(-15deg);
+      }
+    }
+
+    &-icon--delete {
+      transition: all 250ms linear;
+      &:hover {
+        color: theme('colors.red');
+      }
     }
   }
 }
