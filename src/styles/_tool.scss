@@ -1,7 +1,7 @@
 .tool {
   .tool-list {
     &-text {
-      color: theme('colors.darkgrey');
+      color: theme("colors.darkgrey");
     }
 
     &-icon--reset {
@@ -14,7 +14,7 @@
     &-icon--delete {
       transition: all 250ms linear;
       &:hover {
-        color: theme('colors.red');
+        color: theme("colors.red");
       }
     }
   }

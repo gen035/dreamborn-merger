@@ -1,11 +1,11 @@
 export const formatList = (list) => {
-  const lines = list.trim().split('\n');
+  const lines = list.trim().split("\n");
   const objectList = [];
 
   for (const line of lines) {
-    const [countStr, ...nameParts] = line.trim().split(' ');
+    const [countStr, ...nameParts] = line.trim().split(" ");
     const count = parseInt(countStr, 10);
-    const name = nameParts.join(' ');
+    const name = nameParts.join(" ");
     const itemObject = { count, name };
     objectList.push(itemObject);
   }
@@ -47,6 +47,6 @@ export const formatArrayToString = (arr) => {
   // Map each object to a formatted string
   const formattedStrings = arr.map(item => `${item.count} ${item.name}`);
   // Join the formatted strings with line breaks
-  const resultString = formattedStrings.join('\n');
+  const resultString = formattedStrings.join("\n");
   return resultString;
 }

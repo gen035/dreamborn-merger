@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRotateLeft, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { track } from '@vercel/analytics';
+import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowRotateLeft, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { track } from "@vercel/analytics";
 
-import { formatList, formatArrayToString, mergeLists, validateArrays } from '../utils/formatData';
-import InstructionModal from './InstructionModal';
+import { formatList, formatArrayToString, mergeLists, validateArrays } from "../utils/formatData";
+import InstructionModal from "./InstructionModal";
 
 const Tool = () => {
   const [listCount, setListCount] = useState(2);
-  const [listContents, setListContents] = useState(Array.from({ length: listCount }, () => ''));
+  const [listContents, setListContents] = useState(Array.from({ length: listCount }, () => ""));
   const [formattedListsContent, setFormattedListsContent] = useState(Array.from({ length: listCount }, () => []));
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [newList, setNewList] = useState(null);
@@ -16,9 +16,9 @@ const Tool = () => {
   // Handle adding a new list
   const addList = () => {
     setListCount(listCount + 1);
-    setListContents([...listContents, '']);
+    setListContents([...listContents, ""]);
     setFormattedListsContent([...formattedListsContent, []])
-    track('List', { action: 'add' ,totalList: listCount + 1});
+    track("List", { action: "add" ,totalList: listCount + 1});
   };
 
   // Handle deleting a list
@@ -27,7 +27,7 @@ const Tool = () => {
       setListCount(listCount - 1);
       setListContents(listContents.filter((_, i) => i !== index));
       setFormattedListsContent(formattedListsContent.filter((_, i) => i !== index))
-      track('List', { action: 'delete' ,totalList: listCount - 1});
+      track("List", { action: "delete" ,totalList: listCount - 1});
     }
   };
 
@@ -37,11 +37,11 @@ const Tool = () => {
     const updatedFormattedListsContent = [...formattedListsContent];
 
     updatedFormattedListsContent[index] = [];
-    updatedListContents[index] = '';
+    updatedListContents[index] = "";
 
     setListContents(updatedListContents);
     setFormattedListsContent(updatedFormattedListsContent);
-    track('List', { action: 'reset' });
+    track("List", { action: "reset" });
   };
 
   // Handle changing the content of a list
@@ -54,20 +54,20 @@ const Tool = () => {
 
     setListContents(updatedListContents);
     setFormattedListsContent(updatedFormattedListsContent);
-    track('List', { action: 'change' });
+    track("List", { action: "change" });
   };
 
   const handleMergeLists = () => {
     const mergedResults = mergeLists(formattedListsContent);
     setNewList(formatArrayToString(mergedResults));
-    track('List', { action: 'merge' });
+    track("List", { action: "merge" });
   };
 
   const copyToClipboard = () => {
-    const textarea = document && document.querySelector('textarea[name="newList"]');
+    const textarea = document && document.querySelector("textarea[name='newList']");
     textarea && textarea.select();
-    document.execCommand('copy');
-    track('List', {action: 'copy' });
+    document.execCommand("copy");
+    track("List", {action: "copy" });
   };
 
   useEffect(() => {
@@ -75,21 +75,21 @@ const Tool = () => {
   }, [listContents, formattedListsContent])
 
   return (
-    <div className='tool container mx-auto max-w-screen-md px-10 pt-5 pb-20'>
-      <h3 className='text-white underline cursor-pointer' onClick={() => setIsModalOpened(true)}>Instructions</h3>
+    <div className="tool container mx-auto max-w-screen-md px-10 pt-5 pb-20">
+      <h3 className="text-white underline cursor-pointer" onClick={() => setIsModalOpened(true)}>Instructions</h3>
       {listContents.map((content, index) => (
-        <div className='tool-list' key={index}>
-          <div className='tool-list-header mb-2 mt-4 flex justify-between'>
-            <h2 className='tool-list-title text-white'>Deck {index + 1}</h2>
+        <div className="tool-list" key={index}>
+          <div className="tool-list-header mb-2 mt-4 flex justify-between">
+            <h2 className="tool-list-title text-white">Deck {index + 1}</h2>
             <div>
-              <FontAwesomeIcon className='tool-list-icon--reset text-white cursor-pointer' icon={faArrowRotateLeft} onClick={() => handleResetList(index)}/>
+              <FontAwesomeIcon className="tool-list-icon--reset text-white cursor-pointer" icon={faArrowRotateLeft} onClick={() => handleResetList(index)}/>
               {listCount > 2 && (
-                <FontAwesomeIcon className='tool-list-icon--delete text-white cursor-pointer ml-2' icon={faTrash} onClick={() => handleDeleteList(index)}/>
+                <FontAwesomeIcon className="tool-list-icon--delete text-white cursor-pointer ml-2" icon={faTrash} onClick={() => handleDeleteList(index)}/>
               )}
             </div>
           </div>
           <textarea
-            className='tool-list-text block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+            className="tool-list-text block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             value={content}
             onChange={(e) => handleListChange(index, e.target.value)}
             rows={4}
@@ -97,22 +97,22 @@ const Tool = () => {
           />
         </div>
       ))}
-      <div className='mt-4'>
-        <button className='button--animated mr-4' onClick={addList}>Add Deck</button>
-        <button disabled={isButtonDisabled} className='button--animated mr-4' onClick={handleMergeLists}>Merge Decks</button>
+      <div className="mt-4">
+        <button className="button--animated mr-4" onClick={addList}>Add Deck</button>
+        <button disabled={isButtonDisabled} className="button--animated mr-4" onClick={handleMergeLists}>Merge Decks</button>
       </div>
       {newList &&
-        <div className='mt-6'>
-          <h2 className='tool-list-title text-white mb-2'>You new deck:</h2>
+        <div className="mt-6">
+          <h2 className="tool-list-title text-white mb-2">You new deck:</h2>
           <textarea
             name="newList"
             readOnly
-            className='tool-list-text block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+            className="tool-list-text block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             value={newList}
             rows={16}
             cols={50}
           />
-          <button className='button--animated mt-4' onClick={copyToClipboard}>Copy to Clipboard</button>
+          <button className="button--animated mt-4" onClick={copyToClipboard}>Copy to Clipboard</button>
         </div>
       }
     <InstructionModal isOpen={isModalOpened} onClose={() => setIsModalOpened(false)} />
